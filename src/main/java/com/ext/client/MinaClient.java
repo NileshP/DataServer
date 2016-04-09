@@ -28,7 +28,7 @@ public class MinaClient {
 				new ProtocolCodecFilter(new TextLineCodecFactory(Charset
 						.forName("UTF-8"))));
 
-		connector.setHandler(new MinaClientHandler("Hello Server"));
+		connector.setHandler(new MinaClientHandler("DATA|DATA|DATA"));
 		ConnectFuture future = connector.connect(new InetSocketAddress(
 				"localhost", PORT));
 		future.awaitUninterruptibly();
@@ -39,7 +39,7 @@ public class MinaClient {
 		IoSession session = future.getSession();
 		session.getConfig().setUseReadOperation(true);
 		session.getCloseFuture().awaitUninterruptibly();
-		System.out.println(session.read().getMessage());
+		//System.out.println(session.read().getMessage());
 
 		System.out.println("After Writing");
 		connector.dispose();
