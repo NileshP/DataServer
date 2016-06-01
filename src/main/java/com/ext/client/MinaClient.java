@@ -27,8 +27,8 @@ public class MinaClient {
 				"codec",
 				new ProtocolCodecFilter(new TextLineCodecFactory(Charset
 						.forName("UTF-8"))));
-
-		connector.setHandler(new MinaClientHandler("DATA|DATA|DATA"));
+		
+		connector.setHandler(new MinaClientHandler("04/11/2016|21:31:44|+919028576234|L|12323|1234"));
 		ConnectFuture future = connector.connect(new InetSocketAddress(
 				"localhost", PORT));
 		future.awaitUninterruptibly();
