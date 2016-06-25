@@ -6,9 +6,17 @@ import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ext.db.DBUtil;
+
 public class MinaServerHandler extends IoHandlerAdapter {
 
 	Logger logger = LoggerFactory.getLogger(MinaServerHandler.class);
+	
+	DBUtil dbUtil;
+	
+	public MinaServerHandler(DBUtil dbUtil) {
+		this.dbUtil = dbUtil;
+	}
 	
 	@Override
 	public void sessionIdle(IoSession session, IdleStatus status)
@@ -47,6 +55,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		System.out.println("COUNT : "+arrayParsed[4]);
 		System.out.println("CRC : "+arrayParsed[5]);
 
+		dbUtil.insertRecord(arrayParsed[0], arrayParsed[1], arrayParsed[2], arrayParsed[3], arrayParsed[4], arrayParsed[5]);
 		
 	}
 
